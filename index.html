@@ -1,0 +1,2747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utsav Kumar Thakur | Data Science Portfolio & GitHub Dashboard</title>
+  
+  <!-- SEO Metadata -->
+  <meta name="description" content="Portfolio of Utsav Kumar Thakur - MSc Operational Research Student at University of Delhi. Specializing in Data Science, Machine Learning, and Optimization.">
+  <meta name="keywords" content="Utsav Kumar Thakur, Data Science, Operational Research, Optimization, Machine Learning, Portfolio, GitHub Dashboard, TSP, QIGWO">
+  <meta name="author" content="Utsav Kumar Thakur">
+  
+  <!-- Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Devicons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  
+  <!-- FontAwesome for fallback & UI icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* CSS RESET & VARIABLES */
+    :root {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --border-color: #30363d;
+      --accent-color: #58a6ff;
+      --accent-glow: rgba(88, 166, 255, 0.15);
+      --text-primary: #f0f6fc;
+      --text-secondary: #c9d1d9;
+      --text-muted: #8b949e;
+      --success-color: #3fb950;
+      --success-glow: rgba(63, 185, 80, 0.25);
+      --warning-color: #d29922;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-mono: 'Fira Code', monospace;
+      --glass-bg: rgba(22, 27, 34, 0.8);
+      --glass-border: rgba(240, 246, 252, 0.05);
+      --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      /* Grid line background pattern for a premium developer feel */
+      background-image: 
+        radial-gradient(circle at 50% 25%, rgba(22, 27, 34, 0.8) 0%, var(--bg-primary) 80%),
+        linear-gradient(rgba(48, 54, 61, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(48, 54, 61, 0.07) 1px, transparent 1px);
+      background-size: 100% 100%, 24px 24px, 24px 24px;
+      line-height: 1.6;
+    }
+
+    /* SCROLLBAR CUSTOMIZATION */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 5px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color var(--transition-speed);
+    }
+    a:hover {
+      color: #79c0ff;
+    }
+
+    /* GLOBAL CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* GLASSMORPHISM CARD DESIGN SYSTEM */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      transition: transform var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1),
+                  border-color var(--transition-speed),
+                  box-shadow var(--transition-speed);
+      overflow: hidden;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(88, 166, 255, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 15px var(--accent-glow);
+    }
+
+    /* SCROLL ENTRANCE ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* SECTION HEADER STYLE */
+    .section-title {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+      border-radius: 2px;
+    }
+
+    /* HEADER & NAVIGATION */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo i {
+      color: var(--accent-color);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      transition: background var(--transition-speed), color var(--transition-speed);
+    }
+
+    .nav-links a:hover {
+      background: rgba(240, 246, 252, 0.05);
+      color: var(--text-primary);
+    }
+
+    .nav-resume-btn {
+      background: rgba(88, 166, 255, 0.1);
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color) !important;
+      padding: 0.5rem 1rem !important;
+      font-weight: 600 !important;
+      transition: background var(--transition-speed), color var(--transition-speed) !important;
+    }
+
+    .nav-resume-btn:hover {
+      background: var(--accent-color) !important;
+      color: var(--bg-primary) !important;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      padding: 6rem 0 4rem 0;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(63, 185, 80, 0.1);
+      border: 1px solid rgba(63, 185, 80, 0.3);
+      color: var(--success-color);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 10px rgba(63, 185, 80, 0.05);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--success-color);
+      border-radius: 50%;
+      box-shadow: 0 0 0 var(--success-glow);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(63, 185, 80, 0.7);
+      }
+      70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(63, 185, 80, 0);
+      }
+      100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(63, 185, 80, 0);
+      }
+    }
+
+    .hero-avatar-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border-color);
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero-avatar-glow {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-color), var(--success-color));
+      z-index: 1;
+      animation: rotate-gradient 6s linear infinite;
+    }
+
+    @keyframes rotate-gradient {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      background: linear-gradient(135deg, #ffffff 30%, #a5c7f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .typing-container {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--accent-color);
+      height: 1.8rem;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-mono);
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.25rem;
+      background-color: var(--accent-color);
+      margin-left: 5px;
+      animation: blink 0.75s step-end infinite;
+    }
+
+    @keyframes blink {
+      from, to { background-color: transparent }
+      50% { background-color: var(--accent-color); }
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.6;
+    }
+
+    .social-pills {
+      display: flex;
+      gap: 12px;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all var(--transition-speed);
+      cursor: pointer;
+    }
+
+    .pill-btn:hover {
+      background: rgba(240, 246, 252, 0.05);
+      border-color: var(--accent-color);
+      color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(88, 166, 255, 0.15);
+    }
+
+    .pill-btn.github:hover {
+      border-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    }
+
+    .pill-btn.linkedin:hover {
+      border-color: #0077b5;
+      box-shadow: 0 4px 12px rgba(0, 119, 181, 0.2);
+    }
+
+    .pill-btn.gmail:hover {
+      border-color: #ea4335;
+      box-shadow: 0 4px 12px rgba(234, 67, 53, 0.2);
+    }
+
+    /* TSP INTERACTIVE SIMULATOR (HERO RIGHT) */
+    .hero-right {
+      position: relative;
+    }
+
+    .tsp-box {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .tsp-header {
+      background: rgba(240, 246, 252, 0.03);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background-color: #ff5f56; }
+    .dot-yellow { background-color: #ffbd2e; }
+    .dot-green { background-color: #27c93f; }
+
+    .tsp-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .tsp-canvas-container {
+      position: relative;
+      background: #090d13;
+      aspect-ratio: 4 / 3;
+      width: 100%;
+      cursor: crosshair;
+    }
+
+    #tspCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .tsp-stats {
+      padding: 14px 18px;
+      background: rgba(13, 17, 23, 0.9);
+      border-top: 1px solid var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tsp-status-val {
+      color: var(--success-color);
+      font-weight: 600;
+    }
+
+    .tsp-controls {
+      display: flex;
+      border-top: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+    }
+
+    .tsp-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      border-right: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 12px 0;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background var(--transition-speed), color var(--transition-speed);
+    }
+
+    .tsp-btn:last-child {
+      border-right: none;
+    }
+
+    .tsp-btn:hover {
+      background: rgba(240, 246, 252, 0.05);
+      color: var(--text-primary);
+    }
+
+    .tsp-btn.active {
+      color: var(--accent-color);
+      background: rgba(88, 166, 255, 0.05);
+    }
+
+    /* SECTIONS LAYOUT GENERAL */
+    section {
+      padding: 5rem 0;
+    }
+
+    /* STATS SECTION */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.2fr;
+      gap: 1.5rem;
+    }
+
+    .stats-card {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .stats-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .stats-card-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .stats-card-header i {
+      font-size: 1.25rem;
+      color: var(--accent-color);
+    }
+
+    .stats-number {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-sans);
+    }
+
+    .stats-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-item-bar {
+      margin-bottom: 1.25rem;
+    }
+
+    .lang-item-bar:last-child {
+      margin-bottom: 0;
+    }
+
+    .lang-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .lang-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-color-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .lang-bar-bg {
+      height: 6px;
+      background: rgba(240, 246, 252, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .lang-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+
+    /* Streak Stats Image Wrapper */
+    .streak-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      min-height: 110px;
+    }
+
+    .streak-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      transition: transform var(--transition-speed);
+    }
+
+    .streak-img:hover {
+      transform: scale(1.02);
+    }
+
+    /* PINNED PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .project-card {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 240px;
+    }
+
+    .project-card-top {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .project-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .repo-icon-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .repo-icon-group i {
+      color: var(--accent-color);
+      font-size: 1.1rem;
+    }
+
+    .star-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(240, 246, 252, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .star-badge i {
+      color: var(--warning-color);
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tag-pill {
+      background: rgba(88, 166, 255, 0.07);
+      border: 1px solid rgba(88, 166, 255, 0.15);
+      color: var(--accent-color);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .project-action-row {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .project-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(88, 166, 255, 0.1);
+      border: 1px solid rgba(88, 166, 255, 0.25);
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all var(--transition-speed);
+    }
+
+    .project-btn:hover {
+      background: var(--accent-color);
+      color: var(--bg-primary);
+      border-color: var(--accent-color);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    /* SKILLS MATRIX */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .skill-icon-box {
+      font-size: 2.2rem;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: rgba(240, 246, 252, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+
+    .skill-detail {
+      flex-grow: 1;
+    }
+
+    .skill-info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+
+    .skill-pct {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+
+    .skill-progress-bg {
+      height: 8px;
+      background: rgba(240, 246, 252, 0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-color), var(--success-color));
+      border-radius: 4px;
+      width: 0%; /* Initial state for animated progress */
+      transition: width 1.2s cubic-bezier(0.1, 0.8, 0.2, 1);
+    }
+
+    /* EXPERIENCE TIMELINE */
+    .timeline-container {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      padding-left: 2.5rem;
+    }
+
+    /* Central vertical timeline bar */
+    .timeline-container::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-color), var(--success-color), var(--border-color));
+      border-radius: 1px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3.5rem;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Glowing timeline node dot */
+    .timeline-dot {
+      position: absolute;
+      left: -2.5rem;
+      top: 26px;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: var(--bg-primary);
+      border: 3px solid var(--accent-color);
+      box-shadow: 0 0 10px var(--accent-glow);
+      z-index: 2;
+      transition: background-color var(--transition-speed), border-color var(--transition-speed);
+    }
+
+    .timeline-item:nth-child(even) .timeline-dot {
+      border-color: var(--success-color);
+      box-shadow: 0 0 10px var(--success-glow);
+    }
+
+    .timeline-item:hover .timeline-dot {
+      background-color: var(--accent-color);
+    }
+
+    .timeline-item:nth-child(even):hover .timeline-dot {
+      background-color: var(--success-color);
+    }
+
+    .timeline-card {
+      padding: 2rem;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .timeline-role {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .timeline-company {
+      font-size: 0.95rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .timeline-company.green {
+      color: var(--success-color);
+    }
+
+    .timeline-date {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: rgba(240, 246, 252, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 12px;
+    }
+
+    .timeline-body {
+      list-style-type: none;
+    }
+
+    .timeline-body li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-body li:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-body li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-color);
+    }
+
+    .timeline-item:nth-child(even) .timeline-body li::before {
+      color: var(--success-color);
+    }
+
+    /* ACHIEVEMENTS */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .achievement-card {
+      padding: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .achievement-icon {
+      font-size: 2.75rem;
+      margin-bottom: 0.5rem;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      transition: transform var(--transition-speed);
+    }
+
+    .achievement-card:hover .achievement-icon {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    .achievement-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .achievement-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* CONTRIBUTION HEATMAP */
+    .heatmap-card {
+      padding: 2.25rem;
+    }
+
+    .heatmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .heatmap-title-box {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .heatmap-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .heatmap-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .heatmap-legend {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .legend-box {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    .heatmap-scroll-container {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      /* Style custom scroll for horizontal heatmap */
+      scrollbar-width: thin;
+    }
+
+    .heatmap-scroll-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .heatmap-grid-svg {
+      display: block;
+      width: 820px; /* Base static width inside container scroll */
+      height: 112px;
+      margin: 0 auto;
+    }
+
+    /* Tooltip styling for heatmap */
+    .heatmap-tooltip {
+      position: absolute;
+      background: rgba(13, 17, 23, 0.95);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      pointer-events: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      font-family: var(--font-sans);
+      opacity: 0;
+      z-index: 10;
+      transition: opacity 0.15s ease;
+    }
+
+    /* CURRENTLY BUILDING (WIP) */
+    .wip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .wip-card {
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+      position: relative;
+    }
+
+    .wip-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(210, 153, 34, 0.1);
+      border: 1px solid rgba(210, 153, 34, 0.25);
+      color: var(--warning-color);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      font-family: var(--font-mono);
+    }
+
+    .wip-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--warning-color);
+      animation: pulse-wip 1.5s infinite;
+    }
+
+    @keyframes pulse-wip {
+      0% { transform: scale(0.9); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.4; }
+      100% { transform: scale(0.9); opacity: 1; }
+    }
+
+    .wip-card-content {
+      margin-top: 1rem;
+    }
+
+    .wip-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .wip-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+
+    .wip-progress-section {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .wip-progress-lbl {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .wip-progress-fill {
+      background: var(--warning-color);
+      box-shadow: 0 0 8px rgba(210, 153, 34, 0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-text {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .footer-heart {
+      color: #ea4435;
+      animation: heart-beat 1.2s infinite;
+      display: inline-block;
+    }
+
+    @keyframes heart-beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style-type: none;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+      transition: color var(--transition-speed), transform var(--transition-speed);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-color);
+      transform: scale(1.15);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 992px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .hero-right {
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .stats-card:last-child {
+        grid-column: span 2;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .achievements-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .wip-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(22, 27, 34, 0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+        box-shadow: var(--card-shadow);
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .hero-title {
+        font-size: 2.75rem;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .stats-card:last-child {
+        grid-column: span 1;
+      }
+      .achievements-grid {
+        grid-template-columns: 1fr;
+      }
+      .wip-grid {
+        grid-template-columns: 1fr;
+      }
+      section {
+        padding: 4rem 0;
+      }
+      .container {
+        padding: 0 1.25rem;
+      }
+    }
+
+    /* SKELETON LOADING EFFECTS */
+    .skeleton {
+      background: linear-gradient(90deg, #161b22 25%, #21262d 50%, #161b22 75%);
+      background-size: 200% 100%;
+      animation: loading-pulse 1.5s infinite linear;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .skeleton-text {
+      height: 1rem;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    .skeleton-text.short {
+      width: 60%;
+    }
+    .skeleton-title {
+      height: 1.75rem;
+      width: 40%;
+      margin-bottom: 1rem;
+    }
+    .skeleton-number {
+      height: 3.5rem;
+      width: 50px;
+      margin-bottom: 0.5rem;
+    }
+    .skeleton-circle {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+    }
+    .skeleton-bar {
+      height: 16px;
+      width: 100%;
+      border-radius: 8px;
+    }
+    @keyframes loading-pulse {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* NAV SYNC BADGE */
+    .sync-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(88, 166, 255, 0.08);
+      border: 1px solid rgba(88, 166, 255, 0.2);
+      color: var(--accent-color);
+      padding: 6px 12px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      font-family: var(--font-mono);
+      transition: all var(--transition-speed);
+      margin-left: 1rem;
+    }
+    .sync-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: var(--accent-color);
+      animation: pulse-sync 1.5s infinite;
+    }
+    .sync-badge.success {
+      background: rgba(63, 185, 80, 0.08);
+      border-color: rgba(63, 185, 80, 0.2);
+      color: var(--success-color);
+    }
+    .sync-badge.success .sync-dot {
+      background-color: var(--success-color);
+    }
+    .sync-badge.offline {
+      background: rgba(210, 153, 34, 0.08);
+      border-color: rgba(210, 153, 34, 0.2);
+      color: var(--warning-color);
+    }
+    .sync-badge.offline .sync-dot {
+      background-color: var(--warning-color);
+    }
+    @keyframes pulse-sync {
+      0% { transform: scale(0.8); opacity: 0.5; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.8); opacity: 0.5; }
+    }
+
+    /* STACKED BAR CHART STYLE */
+    .stacked-bar-container {
+      display: flex;
+      height: 12px;
+      width: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+      background: rgba(240, 246, 252, 0.08);
+      margin-bottom: 1.5rem;
+    }
+    .stacked-bar-fill {
+      height: 100%;
+      transition: width var(--transition-speed);
+    }
+    .stacked-bar-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .legend-item .color-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container navbar">
+      <div class="nav-logo">
+        <i class="fa-solid fa-square-terminal"></i>
+        <span>utsav.py</span>
+        <div class="sync-badge" id="syncBadge">
+          <span class="sync-dot"></span>
+          <span id="syncText">Syncing...</span>
+        </div>
+      </div>
+      
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#stats">Stats</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="https://github.com/Utsav-Thakur" target="_blank" class="nav-resume-btn">GitHub Profile</a></li>
+      </ul>
+
+      <!-- Simple responsive helper (just visually indicates dashboard layout) -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="about" class="hero-section">
+    <div class="container hero-grid">
+      
+      <!-- HERO LEFT -->
+      <div class="hero-left">
+        <div class="badge-row">
+          <div class="status-badge">
+            <span class="pulse-dot"></span>
+            Open to Opportunities
+          </div>
+        </div>
+        
+        <div class="hero-avatar-wrapper">
+          <div class="hero-avatar-glow"></div>
+          <div class="skeleton skeleton-circle" id="avatarSkeleton" style="position: absolute; top:0; left:0; width:100%; height:100%; z-index:3;"></div>
+          <img src="" alt="Utsav Kumar Thakur" class="hero-avatar" id="heroAvatar" style="opacity: 0; transition: opacity var(--transition-speed); z-index:2;">
+        </div>
+        
+        <h1 class="hero-title">Utsav Kumar Thakur</h1>
+        
+        <div class="typing-container">
+          <span id="typingEffect"></span><span class="typing-cursor"></span>
+        </div>
+        
+        <div id="bioContainer">
+          <div class="skeleton skeleton-text" style="width: 100%; height: 14px;"></div>
+          <div class="skeleton skeleton-text" style="width: 95%; height: 14px;"></div>
+          <div class="skeleton skeleton-text short" style="width: 60%; height: 14px;"></div>
+        </div>
+        
+        <p class="hero-desc" id="heroDesc" style="display: none;">
+          MSc Operational Research student at the <strong>University of Delhi</strong>. 
+          Specializing in translating mathematical optimization, machine learning models, and complex analytics into actionable systems. 
+          Pioneering route and allocation algorithms with metaheuristics.
+        </p>
+        
+        <div class="social-pills">
+          <a href="https://github.com/Utsav-Thakur" target="_blank" class="pill-btn github">
+            <i class="devicon-github-original"></i> GitHub
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="pill-btn linkedin">
+            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a href="mailto:utsavkthakur.du@gmail.com" class="pill-btn gmail">
+            <i class="fa-regular fa-envelope"></i> Gmail
+          </a>
+        </div>
+      </div>
+
+      <!-- HERO RIGHT (TSP OPTIMIZER SIMULATION) -->
+      <div class="hero-right">
+        <div class="tsp-box glass-card">
+          <div class="tsp-header">
+            <div class="window-dots">
+              <span class="window-dot dot-red"></span>
+              <span class="window-dot dot-yellow"></span>
+              <span class="window-dot dot-green"></span>
+            </div>
+            <div class="tsp-title">tsp_qigwo_sim.py</div>
+            <i class="fa-solid fa-code" style="font-size: 0.8rem; color: var(--text-muted);"></i>
+          </div>
+          
+          <div class="tsp-canvas-container" id="tspContainer">
+            <canvas id="tspCanvas"></canvas>
+          </div>
+          
+          <div class="tsp-stats">
+            <div>Cost: <span id="tspCost" class="tsp-status-val">Calculating...</span></div>
+            <div>Iteration: <span id="tspIter" class="tsp-status-val">0</span></div>
+            <div>Optimizer: <span class="tsp-status-val" style="color: var(--accent-color);">QIGWO (2-Opt)</span></div>
+          </div>
+          
+          <div class="tsp-controls">
+            <button id="tspResetBtn" class="tsp-btn"><i class="fa-solid fa-rotate-right"></i> Reset</button>
+            <button id="tspAddNodeBtn" class="tsp-btn"><i class="fa-solid fa-plus"></i> Add Node</button>
+            <button id="tspPauseBtn" class="tsp-btn"><i class="fa-solid fa-pause"></i> Pause</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GITHUB STATS ROW -->
+  <section id="stats" class="container reveal">
+    <h2 class="section-title">GitHub activity metrics</h2>
+    <div class="stats-grid">
+      
+      <!-- Card 1: Repositories -->
+      <div class="stats-card glass-card">
+        <div class="stats-card-header">
+          <span class="stats-card-title">Repositories</span>
+          <i class="fa-solid fa-folder-open"></i>
+        </div>
+        <div>
+          <div id="statsReposContainer">
+            <div class="skeleton skeleton-number" style="width: 60px; height: 3.5rem;"></div>
+            <div class="skeleton skeleton-text" style="width: 80%; height: 12px; margin-top: 10px;"></div>
+          </div>
+          <div id="statsReposContent" style="display: none;">
+            <div class="stats-number" id="statsReposCount">0</div>
+            <div class="stats-meta">
+              <i class="fa-solid fa-users" style="font-size: 0.8rem; color: var(--text-muted); margin-right: 4px;"></i>
+              <span id="statsFollowers">0 followers</span> &middot; <span id="statsFollowing">0 following</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Languages -->
+      <div class="stats-card glass-card">
+        <div class="stats-card-header">
+          <span class="stats-card-title">Top Languages</span>
+          <i class="fa-solid fa-code-branch"></i>
+        </div>
+        <div>
+          <div id="statsLanguagesContainer">
+            <div class="skeleton skeleton-bar" style="margin-bottom: 12px;"></div>
+            <div class="skeleton skeleton-text" style="width: 80%; height: 12px;"></div>
+            <div class="skeleton skeleton-text short" style="width: 60%; height: 12px;"></div>
+          </div>
+          <div id="statsLanguagesContent" style="display: none;">
+            <!-- Will be populated dynamically with segmented bar chart -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Streak Stats -->
+      <div class="stats-card glass-card">
+        <div class="stats-card-header">
+          <span class="stats-card-title">GitHub Streak</span>
+          <i class="fa-solid fa-fire"></i>
+        </div>
+        <div class="streak-container">
+          <img src="https://github-readme-streak-stats.herokuapp.com/?user=Utsav-Thakur&theme=github_dark&background=161b22&ring=58a6ff&fire=58a6ff&stroke=30363d&currStreakNum=ffffff&sideNums=ffffff&sideLabels=8b949e&currStreakLabel=58a6ff" alt="GitHub Streak Stats" class="streak-img" onerror="this.src='https://placehold.co/400x120/161b22/8b949e?text=Streak+Stats+Loading...';">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PINNED PROJECTS -->
+  <section id="projects" class="container reveal">
+    <h2 class="section-title">Pinned Repositories</h2>
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Skeleton Card 1 -->
+      <div class="project-card glass-card">
+        <div class="project-card-top">
+          <div class="project-meta-row">
+            <div class="skeleton" style="width: 150px; height: 12px;"></div>
+            <div class="skeleton" style="width: 40px; height: 12px;"></div>
+          </div>
+          <div class="skeleton" style="width: 200px; height: 24px; margin-top: 15px; margin-bottom: 10px;"></div>
+          <div class="skeleton" style="width: 100%; height: 14px; margin-bottom: 6px;"></div>
+          <div class="skeleton" style="width: 95%; height: 14px; margin-bottom: 6px;"></div>
+          <div class="skeleton" style="width: 60%; height: 14px;"></div>
+        </div>
+        <div>
+          <div style="display: flex; gap: 8px; margin-top: 20px; margin-bottom: 15px;">
+            <div class="skeleton" style="width: 50px; height: 20px; border-radius: 4px;"></div>
+            <div class="skeleton" style="width: 60px; height: 20px; border-radius: 4px;"></div>
+            <div class="skeleton" style="width: 70px; height: 20px; border-radius: 4px;"></div>
+          </div>
+          <div style="display: flex; justify-content: flex-end;">
+            <div class="skeleton" style="width: 90px; height: 32px; border-radius: 8px;"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Skeleton Card 2 -->
+      <div class="project-card glass-card">
+        <div class="project-card-top">
+          <div class="project-meta-row">
+            <div class="skeleton" style="width: 150px; height: 12px;"></div>
+            <div class="skeleton" style="width: 40px; height: 12px;"></div>
+          </div>
+          <div class="skeleton" style="width: 180px; height: 24px; margin-top: 15px; margin-bottom: 10px;"></div>
+          <div class="skeleton" style="width: 100%; height: 14px; margin-bottom: 6px;"></div>
+          <div class="skeleton" style="width: 95%; height: 14px; margin-bottom: 6px;"></div>
+          <div class="skeleton" style="width: 60%; height: 14px;"></div>
+        </div>
+        <div>
+          <div style="display: flex; gap: 8px; margin-top: 20px; margin-bottom: 15px;">
+            <div class="skeleton" style="width: 50px; height: 20px; border-radius: 4px;"></div>
+            <div class="skeleton" style="width: 60px; height: 20px; border-radius: 4px;"></div>
+            <div class="skeleton" style="width: 70px; height: 20px; border-radius: 4px;"></div>
+          </div>
+          <div style="display: flex; justify-content: flex-end;">
+            <div class="skeleton" style="width: 90px; height: 32px; border-radius: 8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS MATRIX -->
+  <section id="skills" class="container reveal">
+    <h2 class="section-title">Skills Matrix</h2>
+    <div class="skills-grid">
+      
+      <!-- Skill 1: Python -->
+      <div class="skill-card glass-card">
+        <div class="skill-icon-box">
+          <i class="devicon-python-plain colored"></i>
+        </div>
+        <div class="skill-detail">
+          <div class="skill-info-row">
+            <span class="skill-name">Python</span>
+            <span class="skill-pct">85%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" data-percentage="85%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill 2: SQL -->
+      <div class="skill-card glass-card">
+        <div class="skill-icon-box">
+          <i class="devicon-mysql-plain colored"></i>
+        </div>
+        <div class="skill-detail">
+          <div class="skill-info-row">
+            <span class="skill-name">SQL</span>
+            <span class="skill-pct">75%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" data-percentage="75%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill 3: Power BI -->
+      <div class="skill-card glass-card">
+        <div class="skill-icon-box">
+          <i class="fa-solid fa-chart-pie" style="color: #f2c811;"></i>
+        </div>
+        <div class="skill-detail">
+          <div class="skill-info-row">
+            <span class="skill-name">Power BI</span>
+            <span class="skill-pct">80%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" data-percentage="80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill 4: Machine Learning -->
+      <div class="skill-card glass-card">
+        <div class="skill-icon-box">
+          <i class="fa-solid fa-brain" style="color: #ff79c6;"></i>
+        </div>
+        <div class="skill-detail">
+          <div class="skill-info-row">
+            <span class="skill-name">Machine Learning</span>
+            <span class="skill-pct">80%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" data-percentage="80%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill 5: Excel -->
+      <div class="skill-card glass-card">
+        <div class="skill-icon-box">
+          <i class="fa-solid fa-file-excel" style="color: #107c41;"></i>
+        </div>
+        <div class="skill-detail">
+          <div class="skill-info-row">
+            <span class="skill-name">Excel</span>
+            <span class="skill-pct">90%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" data-percentage="90%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill 6: Optimization -->
+      <div class="skill-card glass-card">
+        <div class="skill-icon-box">
+          <i class="fa-solid fa-diagram-project" style="color: #58a6ff;"></i>
+        </div>
+        <div class="skill-detail">
+          <div class="skill-info-row">
+            <span class="skill-name">Optimization</span>
+            <span class="skill-pct">88%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill" data-percentage="88%"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE TIMELINE -->
+  <section id="experience" class="container reveal">
+    <h2 class="section-title">Professional Milestones</h2>
+    
+    <div class="timeline-container">
+      
+      <!-- Milestone 1 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card glass-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Business Strategy & Analytics Intern</h3>
+              <div class="timeline-company">TalentXminds</div>
+            </div>
+            <span class="timeline-date">June 2024 – August 2024</span>
+          </div>
+          <ul class="timeline-body">
+            <li>Spearheaded quantitative data parsing and operational metrics analysis to optimize internal resource planning workflows.</li>
+            <li>Configured structured SQL pipeline routines alongside dynamic Power BI dashboards to drive executive metrics tracking.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Milestone 2 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card glass-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Marketing & Finance Intern</h3>
+              <div class="timeline-company green">Insplore TLS</div>
+            </div>
+            <span class="timeline-date">January 2024 – March 2024</span>
+          </div>
+          <ul class="timeline-body">
+            <li>Modeled financial trends and budget allocation profiles to evaluate marketing channel returns using Python data packages.</li>
+            <li>Analyzed customer segmentation and performance matrices, contributing analytical support directly to regional campaigns.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="container reveal">
+    <h2 class="section-title">Certifications & Honors</h2>
+    <div class="achievements-grid">
+      
+      <!-- Achievement 1 -->
+      <div class="achievement-card glass-card">
+        <div class="achievement-icon">🏆</div>
+        <h3 class="achievement-title">IIT Guwahati Winter Consulting</h3>
+        <p class="achievement-desc">Secured placement in the top 25% of national solvers evaluating case studies and structural consulting models.</p>
+      </div>
+
+      <!-- Achievement 2 -->
+      <div class="achievement-card glass-card">
+        <div class="achievement-icon">🎓</div>
+        <h3 class="achievement-title">Oracle Cloud AI Foundations Certified</h3>
+        <p class="achievement-desc">Professional credential verifying core cloud artificial intelligence architectures, workloads, and services.</p>
+      </div>
+
+      <!-- Achievement 3 -->
+      <div class="achievement-card glass-card">
+        <div class="achievement-icon">🌐</div>
+        <h3 class="achievement-title">Japanese Language Certification</h3>
+        <p class="achievement-desc">Awarded by St. Stephen's College (University of Delhi) demonstrating intermediate cultural and linguistic proficiency.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTRIBUTION HEATMAP -->
+  <section id="contributions" class="container reveal">
+    <div class="heatmap-card glass-card">
+      <div class="heatmap-header">
+        <div class="heatmap-title-box">
+          <h3 class="heatmap-title">2025–2026 Contributions</h3>
+          <span class="heatmap-subtitle">Visual representation of daily commits and activity</span>
+        </div>
+        <div class="heatmap-legend">
+          <span>Less</span>
+          <div class="legend-box" style="background-color: #161b22; border: 1px solid rgba(240,246,252,0.05);"></div>
+          <div class="legend-box" style="background-color: #0e4429;"></div>
+          <div class="legend-box" style="background-color: #006d32;"></div>
+          <div class="legend-box" style="background-color: #26a641;"></div>
+          <div class="legend-box" style="background-color: #39d353;"></div>
+          <span>More</span>
+        </div>
+      </div>
+      
+      <!-- Heatmap Scroll Container -->
+      <div class="heatmap-scroll-container">
+        <svg class="heatmap-grid-svg" id="heatmapSvg"></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRENTLY BUILDING (WIP) -->
+  <section id="wip" class="container reveal">
+    <h2 class="section-title">Currently Building</h2>
+    <div class="wip-grid">
+      
+      <!-- WIP 1 -->
+      <div class="wip-card glass-card">
+        <span class="wip-badge">
+          <span class="wip-badge-dot"></span> WIP
+        </span>
+        <div class="wip-card-content">
+          <h3 class="wip-title">TSP Interactive Dashboard</h3>
+          <p class="wip-desc">Upgrading metaheuristic solvers with WebAssembly integrations to visualize evolutionary route swaps on massive datasets.</p>
+        </div>
+        <div class="wip-progress-section">
+          <div class="wip-progress-lbl">
+            <span>Progress</span>
+            <span>85%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill wip-progress-fill" style="width: 85%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIP 2 -->
+      <div class="wip-card glass-card">
+        <span class="wip-badge">
+          <span class="wip-badge-dot"></span> Research
+        </span>
+        <div class="wip-card-content">
+          <h3 class="wip-title">GitHub Profile Optimization</h3>
+          <p class="wip-desc">Structuring repository assets, automated CI action pipelines, and data dashboard layouts to present optimization benchmarks.</p>
+        </div>
+        <div class="wip-progress-section">
+          <div class="wip-progress-lbl">
+            <span>Progress</span>
+            <span>60%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill wip-progress-fill" style="width: 60%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WIP 3 -->
+      <div class="wip-card glass-card">
+        <span class="wip-badge">
+          <span class="wip-badge-dot"></span> Designing
+        </span>
+        <div class="wip-card-content">
+          <h3 class="wip-title">Credit Risk API</h3>
+          <p class="wip-desc">Configuring a Python flask API powered by operational research scoring logic to compute risk thresholds in banking networks.</p>
+        </div>
+        <div class="wip-progress-section">
+          <div class="wip-progress-lbl">
+            <span>Progress</span>
+            <span>40%</span>
+          </div>
+          <div class="skill-progress-bg">
+            <div class="skill-progress-fill wip-progress-fill" style="width: 40%"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-content">
+      <p class="footer-text">Built with <span class="footer-heart">❤️</span> by Utsav | Let's connect</p>
+      
+      <ul class="footer-links">
+        <li><a href="https://github.com/Utsav-Thakur" target="_blank" aria-label="GitHub"><i class="devicon-github-original"></i></a></li>
+        <li><a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></li>
+        <li><a href="mailto:utsavkthakur.du@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a></li>
+      </ul>
+      
+      <p class="footer-text" style="font-size: 0.75rem; margin-top: 1rem; color: var(--text-muted);">
+        &copy; 2026 Utsav Kumar Thakur. All rights reserved. Registered hostable on GitHub Pages.
+      </p>
+    </div>
+  </footer>
+
+  <!-- TOOLTIP DOM FOR HEATMAP -->
+  <div id="heatmapTooltip" class="heatmap-tooltip"></div>
+
+  <!-- INTERACTIVE SCRIPTS -->
+  <script>
+    // ----------------------------------------------------
+    // LIVE GITHUB API DATA FETCHING & RENDERING
+    // ----------------------------------------------------
+    const GITHUB_USERNAME = "Utsav-Thakur";
+    const CACHE_KEY_PROFILE = "github_profile_cache";
+    const CACHE_KEY_REPOS = "github_repos_cache";
+    const CACHE_KEY_LANGUAGES = "github_languages_cache";
+    const CACHE_TIMEOUT = 1000 * 60 * 15; // 15 minutes cache
+
+    // Default Fallbacks in case API fails and no cache exists
+    const FALLBACK_PROFILE = {
+      avatar_url: "https://github.com/Utsav-Thakur.png",
+      public_repos: 2,
+      followers: 0,
+      following: 0,
+      bio: "MSc Operational Research student at the University of Delhi. Specializing in translating mathematical optimization, machine learning models, and complex analytics into actionable systems. Pioneering route and allocation algorithms with metaheuristics.",
+      created_at: "2022-04-27T18:17:43Z"
+    };
+
+    const FALLBACK_REPOS = [
+      {
+        name: "TSP",
+        full_name: "Utsav-Thakur/TSP",
+        description: "Route optimization using Quantum-Inspired Grey Wolf Algorithm. 20% cost reduction over baseline.",
+        stargazers_count: 1,
+        language: "Jupyter Notebook",
+        updated_at: "2026-06-24T11:07:54Z",
+        html_url: "https://github.com/Utsav-Thakur/TSP"
+      },
+      {
+        name: "portfolio-web",
+        full_name: "Utsav-Thakur/portfolio-web",
+        description: "Personal portfolio website with interactive TSP dashboard.",
+        stargazers_count: 1,
+        language: "HTML",
+        updated_at: "2026-06-24T10:56:10Z",
+        html_url: "https://github.com/Utsav-Thakur/portfolio-web"
+      }
+    ];
+
+    const FALLBACK_LANGUAGES = {
+      "Jupyter Notebook": 981916,
+      "HTML": 176463
+    };
+
+    const LANGUAGE_COLORS = {
+      "Python": "#3572A5",
+      "Jupyter Notebook": "#DA5B0B",
+      "HTML": "#e34c26",
+      "CSS": "#563d7c",
+      "JavaScript": "#f1e05a"
+    };
+
+    // Helper to get cache or return null
+    function getCache(key) {
+      const cached = localStorage.getItem(key);
+      if (!cached) return null;
+      try {
+        const parsed = JSON.parse(cached);
+        if (Date.now() - parsed.timestamp < CACHE_TIMEOUT) {
+          return parsed.data;
+        }
+      } catch (e) {
+        console.error("Error reading cache", e);
+      }
+      return null;
+    }
+
+    // Helper to write cache
+    function setCache(key, data) {
+      try {
+        localStorage.setItem(key, JSON.stringify({
+          timestamp: Date.now(),
+          data: data
+        }));
+      } catch (e) {
+        console.error("Error writing cache", e);
+      }
+    }
+
+    async function fetchGitHubData() {
+      const syncBadge = document.getElementById("syncBadge");
+      const syncText = document.getElementById("syncText");
+
+      // Set initial sync state
+      syncBadge.className = "sync-badge";
+      syncText.textContent = "Syncing...";
+
+      // Attempt to load from cache first to avoid layout shift
+      const cachedProfile = getCache(CACHE_KEY_PROFILE);
+      const cachedRepos = getCache(CACHE_KEY_REPOS);
+      const cachedLanguages = getCache(CACHE_KEY_LANGUAGES);
+
+      if (cachedProfile && cachedRepos && cachedLanguages) {
+        renderProfile(cachedProfile);
+        renderRepos(cachedRepos);
+        renderLanguages(cachedLanguages);
+        updateSyncBadge(true, true); // cached Success
+      }
+
+      try {
+        // Run network fetches concurrently
+        const [profileRes, reposRes, langRes] = await Promise.all([
+          fetch(`https://api.github.com/users/${GITHUB_USERNAME}`),
+          fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos`),
+          fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/TSP/languages`)
+        ]);
+
+        // Check if rate limited or hit errors
+        if (!profileRes.ok || !reposRes.ok || !langRes.ok) {
+          throw new Error("GitHub API request failed");
+        }
+
+        const profileData = await profileRes.json();
+        const reposData = await reposRes.json();
+        const langData = await langRes.json();
+
+        // Write cache
+        setCache(CACHE_KEY_PROFILE, profileData);
+        setCache(CACHE_KEY_REPOS, reposData);
+        setCache(CACHE_KEY_LANGUAGES, langData);
+
+        // Render live data
+        renderProfile(profileData);
+        renderRepos(reposData);
+        renderLanguages(langData);
+        updateSyncBadge(true, false); // Live Success
+
+      } catch (err) {
+        console.warn("Using fallbacks due to API fetch failure:", err);
+        // If network failed and no cached data existed, use hardcoded values
+        if (!cachedProfile || !cachedRepos || !cachedLanguages) {
+          renderProfile(FALLBACK_PROFILE);
+          renderRepos(FALLBACK_REPOS);
+          renderLanguages(FALLBACK_LANGUAGES);
+          updateSyncBadge(false, false); // Fallback Offline
+        } else {
+          // Cached data already rendered, just update badge to offline mode
+          updateSyncBadge(false, true); // Cached Offline
+        }
+      }
+    }
+
+    function updateSyncBadge(success, cached) {
+      const syncBadge = document.getElementById("syncBadge");
+      const syncText = document.getElementById("syncText");
+      
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+      if (success) {
+        syncBadge.className = "sync-badge success";
+        syncText.textContent = `Synced: ${timeStr}${cached ? " (Cache)" : ""}`;
+      } else {
+        syncBadge.className = "sync-badge offline";
+        syncText.textContent = cached ? `Offline (Cached)` : `Offline (Fallback)`;
+      }
+    }
+
+    function renderProfile(profile) {
+      // Avatar loader logic
+      const avatarSkeleton = document.getElementById("avatarSkeleton");
+      const heroAvatar = document.getElementById("heroAvatar");
+      if (heroAvatar && avatarSkeleton) {
+        heroAvatar.src = profile.avatar_url;
+        heroAvatar.onload = () => {
+          avatarSkeleton.style.display = "none";
+          heroAvatar.style.opacity = 1;
+        };
+      }
+
+      // Bio text update
+      const bioContainer = document.getElementById("bioContainer");
+      const heroDesc = document.getElementById("heroDesc");
+      if (heroDesc && bioContainer) {
+        if (profile.bio) {
+          heroDesc.textContent = profile.bio;
+        }
+        bioContainer.style.display = "none";
+        heroDesc.style.display = "block";
+      }
+
+      // Repositories card update
+      const statsReposContainer = document.getElementById("statsReposContainer");
+      const statsReposContent = document.getElementById("statsReposContent");
+      const statsReposCount = document.getElementById("statsReposCount");
+      const statsFollowers = document.getElementById("statsFollowers");
+      const statsFollowing = document.getElementById("statsFollowing");
+
+      if (statsReposContainer && statsReposContent && statsReposCount) {
+        statsReposCount.textContent = profile.public_repos;
+        if (statsFollowers) statsFollowers.textContent = `${profile.followers} follower${profile.followers !== 1 ? 's' : ''}`;
+        if (statsFollowing) statsFollowing.textContent = `${profile.following} following`;
+
+        statsReposContainer.style.display = "none";
+        statsReposContent.style.display = "block";
+      }
+    }
+
+    function renderRepos(repos) {
+      const projectsGrid = document.getElementById("projectsGrid");
+      if (!projectsGrid) return;
+
+      // Filter and locate relevant repos: TSP and portfolio-web
+      const matchedTSP = repos.find(r => r.name.toLowerCase() === "tsp") || FALLBACK_REPOS[0];
+      const matchedPortfolio = repos.find(r => r.name.toLowerCase() === "portfolio-web") || FALLBACK_REPOS[1];
+
+      const reposToRender = [
+        {
+          data: matchedTSP,
+          title: "TSP — QIGWO Optimizer", // Enhanced title as requested in design requirements
+          tags: ["Python", "Jupyter", "Optimization", "Metaheuristics"],
+          btnText: "Live Demo",
+          btnUrl: "https://github.com/Utsav-Thakur/TSP"
+        },
+        {
+          data: matchedPortfolio,
+          title: "portfolio-web",
+          tags: ["HTML", "CSS", "JS", "Data Visualizations"],
+          btnText: "Live Dashboard",
+          btnUrl: "#about"
+        }
+      ];
+
+      let html = "";
+      reposToRender.forEach(item => {
+        const repo = item.data;
+        const stars = repo.stargazers_count || 0;
+        
+        // Format last updated date
+        const updatedDate = new Date(repo.updated_at || repo.pushed_at);
+        const formattedDate = updatedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+        // Build project tags HTML
+        let tagsHtml = "";
+        item.tags.forEach(tag => {
+          tagsHtml += `<span class="tag-pill">${tag}</span>`;
+        });
+
+        // Use custom description if repo description is empty
+        const desc = repo.description || (repo.name.toLowerCase() === "tsp" ? FALLBACK_REPOS[0].description : FALLBACK_REPOS[1].description);
+
+        html += `
+        <div class="project-card glass-card">
+          <div class="project-card-top">
+            <div class="project-meta-row">
+              <div class="repo-icon-group">
+                <i class="fa-regular fa-bookmark"></i>
+                <span>Utsav-Thakur / ${repo.name}</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">Push: ${formattedDate}</span>
+                <div class="star-badge">
+                  <i class="fa-solid fa-star"></i> ${stars}
+                </div>
+              </div>
+            </div>
+            <h3 class="project-title">${item.title}</h3>
+            <p class="project-desc">${desc}</p>
+          </div>
+          <div>
+            <div class="project-tags">
+              ${tagsHtml}
+            </div>
+            <div class="project-action-row">
+              <a href="${item.btnUrl}" class="project-btn">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> ${item.btnText}
+              </a>
+            </div>
+          </div>
+        </div>
+        `;
+      });
+
+      projectsGrid.innerHTML = html;
+    }
+
+    function renderLanguages(languages) {
+      const container = document.getElementById("statsLanguagesContainer");
+      const content = document.getElementById("statsLanguagesContent");
+      if (!container || !content) return;
+
+      // Calculate total bytes
+      let totalBytes = 0;
+      for (const lang in languages) {
+        totalBytes += languages[lang];
+      }
+
+      if (totalBytes === 0) {
+        content.innerHTML = `<p style="font-size: 0.85rem; color: var(--text-muted);">No language metrics available</p>`;
+        container.style.display = "none";
+        content.style.display = "block";
+        return;
+      }
+
+      // Compute percentages and build stacked bar elements
+      let stackedBarHtml = `<div class="stacked-bar-container">`;
+      let legendHtml = `<div class="stacked-bar-legend">`;
+
+      for (const lang in languages) {
+        const bytes = languages[lang];
+        const pct = ((bytes / totalBytes) * 100).toFixed(1);
+        
+        // Pick language color
+        const color = LANGUAGE_COLORS[lang] || "#8b949e";
+
+        // Stacked bar segment
+        stackedBarHtml += `<div class="stacked-bar-fill" style="width: ${pct}%; background-color: ${color};" title="${lang}: ${pct}%"></div>`;
+
+        // Legend row
+        legendHtml += `
+          <div class="legend-item">
+            <span class="color-dot" style="background-color: ${color};"></span>
+            <span>${lang}</span>
+            <span style="color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; margin-left: auto;">${pct}%</span>
+          </div>
+        `;
+      }
+
+      stackedBarHtml += `</div>`;
+      legendHtml += `</div>`;
+
+      content.innerHTML = stackedBarHtml + legendHtml;
+      container.style.display = "none";
+      content.style.display = "block";
+    }
+
+    // ----------------------------------------------------
+    // TYPING EFFECT LOGIC
+    // ----------------------------------------------------
+    const roles = [
+      "Data Scientist",
+      "ML Engineer",
+      "Optimization Specialist"
+    ];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpan = document.getElementById("typingEffect");
+    const typingDelay = 100;
+    const erasingDelay = 50;
+    const newWordDelay = 2000; // delay between words
+
+    function type() {
+      const currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typingSpan.textContent = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typingSpan.textContent = currentRole.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      if (!isDeleting && charIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(type, newWordDelay);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(type, 300);
+      } else {
+        setTimeout(type, isDeleting ? erasingDelay : typingDelay);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(type, 500);
+      generateHeatmap();
+      initTspSimulator();
+      fetchGitHubData();
+
+      // Mobile Menu Toggle
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+          item.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+          });
+        });
+      }
+    });
+
+    // ----------------------------------------------------
+    // SCROLL REVEAL INTERSECTION OBSERVER
+    // ----------------------------------------------------
+    const revealElements = document.querySelectorAll(".reveal");
+    const skillProgressBars = document.querySelectorAll(".skill-progress-fill");
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          
+          // If the element revealed has skill progress bars inside, animate them
+          const bars = entry.target.querySelectorAll(".skill-progress-fill:not(.wip-progress-fill)");
+          bars.forEach(bar => {
+            const pct = bar.getAttribute("data-percentage");
+            bar.style.width = pct;
+          });
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+
+    revealElements.forEach(el => {
+      revealObserver.observe(el);
+    });
+
+    // ----------------------------------------------------
+    // SVG CONTRIBUTION HEATMAP GENERATOR
+    // ----------------------------------------------------
+    function generateHeatmap() {
+      const svg = document.getElementById("heatmapSvg");
+      if (!svg) return;
+
+      const colors = ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'];
+      const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const days = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+      
+      const boxSize = 10;
+      const boxGap = 2;
+      const colWidth = boxSize + boxGap;
+      const rowHeight = boxSize + boxGap;
+      const startX = 35; // margin for day labels
+      const startY = 20; // margin for month labels
+      
+      const tooltip = document.getElementById("heatmapTooltip");
+      
+      // Render Day Labels
+      for (let d = 0; d < 7; d++) {
+        if (days[d]) {
+          const txt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+          txt.setAttribute("x", "10");
+          txt.setAttribute("y", startY + (d * rowHeight) + 9);
+          txt.setAttribute("fill", "#8b949e");
+          txt.setAttribute("font-size", "9px");
+          txt.setAttribute("font-family", "var(--font-sans)");
+          txt.textContent = days[d];
+          svg.appendChild(txt);
+        }
+      }
+
+      // Generate dates & activities
+      const contributions = [];
+      const startDate = new Date();
+      startDate.setDate(startDate.getDate() - 371); // ~53 weeks ago
+
+      // Dynamic month placements array
+      let currentMonth = -1;
+      
+      for (let col = 0; col < 53; col++) {
+        const colG = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        colG.setAttribute("transform", `translate(${startX + (col * colWidth)}, 0)`);
+        
+        for (let row = 0; row < 7; row++) {
+          const date = new Date(startDate);
+          date.setDate(startDate.getDate() + (col * 7) + row);
+          
+          // Calculate random commits (weighted for realism)
+          let commitCount = 0;
+          const dayOfWeek = date.getDay();
+          const month = date.getMonth();
+          
+          // Random generator with constraints for active layout
+          const rand = Math.random();
+          if (dayOfWeek !== 0 && dayOfWeek !== 6) { // Weekdays
+            if (rand < 0.25) commitCount = 0;
+            else if (rand < 0.6) commitCount = Math.floor(Math.random() * 3) + 1; // 1-3
+            else if (rand < 0.9) commitCount = Math.floor(Math.random() * 5) + 3; // 3-7
+            else commitCount = Math.floor(Math.random() * 6) + 8; // 8-13 (Busy days)
+          } else { // Weekends
+            if (rand < 0.75) commitCount = 0;
+            else commitCount = Math.floor(Math.random() * 3) + 1; // 1-3
+          }
+
+          // Pick color class based on commits
+          let colorIdx = 0;
+          if (commitCount > 0 && commitCount <= 2) colorIdx = 1;
+          else if (commitCount > 2 && commitCount <= 5) colorIdx = 2;
+          else if (commitCount > 5 && commitCount <= 8) colorIdx = 3;
+          else if (commitCount > 8) colorIdx = 4;
+          
+          const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          rect.setAttribute("x", "0");
+          rect.setAttribute("y", startY + (row * rowHeight));
+          rect.setAttribute("width", boxSize);
+          rect.setAttribute("height", boxSize);
+          rect.setAttribute("rx", "2");
+          rect.setAttribute("ry", "2");
+          rect.setAttribute("fill", colors[colorIdx]);
+          rect.style.cursor = "pointer";
+          
+          // Format date for tooltip
+          const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+          const commitsText = commitCount === 0 ? 'No contributions' : `${commitCount} contribution${commitCount > 1 ? 's' : ''}`;
+          const tooltipContent = `${commitsText} on ${dateStr}`;
+          
+          // Mouse hover interactions
+          rect.addEventListener("mouseenter", (e) => {
+            rect.setAttribute("stroke", "#58a6ff");
+            rect.setAttribute("stroke-width", "1");
+            tooltip.textContent = tooltipContent;
+            tooltip.style.opacity = "1";
+            
+            const rectBounds = rect.getBoundingClientRect();
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            tooltip.style.left = `${rectBounds.left + scrollLeft - (tooltip.offsetWidth / 2) + 5}px`;
+            tooltip.style.top = `${rectBounds.top + scrollTop - tooltip.offsetHeight - 8}px`;
+          });
+          
+          rect.addEventListener("mouseleave", () => {
+            rect.removeAttribute("stroke");
+            rect.removeAttribute("stroke-width");
+            tooltip.style.opacity = "0";
+          });
+          
+          colG.appendChild(rect);
+          
+          // Add month labels
+          if (row === 0 && date.getMonth() !== currentMonth) {
+            currentMonth = date.getMonth();
+            // Only add label if it's not crowding previous label
+            if (col % 4 === 0 || col === 1) {
+              const monthTxt = document.createElementNS("http://www.w3.org/2000/svg", "text");
+              monthTxt.setAttribute("x", startX + (col * colWidth));
+              monthTxt.setAttribute("y", "12");
+              monthTxt.setAttribute("fill", "#8b949e");
+              monthTxt.setAttribute("font-size", "9px");
+              monthTxt.setAttribute("font-family", "var(--font-sans)");
+              monthTxt.textContent = months[currentMonth];
+              svg.appendChild(monthTxt);
+            }
+          }
+        }
+        svg.appendChild(colG);
+      }
+    }
+
+    // ----------------------------------------------------
+    // LIVE TSP QIGWO ALGORITHM SIMULATOR (CANVAS)
+    // ----------------------------------------------------
+    function initTspSimulator() {
+      const container = document.getElementById("tspContainer");
+      const canvas = document.getElementById("tspCanvas");
+      if (!canvas) return;
+
+      const ctx = canvas.getContext("2d");
+      
+      const costSpan = document.getElementById("tspCost");
+      const iterSpan = document.getElementById("tspIter");
+      const resetBtn = document.getElementById("tspResetBtn");
+      const addNodeBtn = document.getElementById("tspAddNodeBtn");
+      const pauseBtn = document.getElementById("tspPauseBtn");
+      
+      let nodes = [];
+      let currentTour = [];
+      let bestTour = [];
+      let bestCost = Infinity;
+      let iteration = 0;
+      let isPaused = false;
+      let animationFrameId = null;
+      
+      // Resize canvas to match layout container
+      function resizeCanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = container.getBoundingClientRect();
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+        ctx.scale(dpr, dpr);
+      }
+      
+      // Initialize random node coordinates
+      function generateNodes(num = 12) {
+        nodes = [];
+        const rect = container.getBoundingClientRect();
+        const w = rect.width;
+        const h = rect.height;
+        
+        // Add nodes away from border margins
+        for (let i = 0; i < num; i++) {
+          nodes.push({
+            x: 40 + Math.random() * (w - 80),
+            y: 40 + Math.random() * (h - 80),
+            id: i
+          });
+        }
+        
+        // Setup initial default sequential tour
+        currentTour = Array.from({length: nodes.length}, (_, i) => i);
+        bestTour = [...currentTour];
+        bestCost = calculateTourCost(bestTour);
+        iteration = 0;
+      }
+      
+      function calculateDistance(n1, n2) {
+        return Math.sqrt((n1.x - n2.x) ** 2 + (n1.y - n2.y) ** 2);
+      }
+      
+      function calculateTourCost(tour) {
+        let dist = 0;
+        for (let i = 0; i < tour.length; i++) {
+          const n1 = nodes[tour[i]];
+          const n2 = nodes[tour[(i + 1) % tour.length]];
+          dist += calculateDistance(n1, n2);
+        }
+        return dist;
+      }
+
+      // 2-Opt local search swap representing solver optimization steps
+      function performTwoOptStep() {
+        if (nodes.length < 4) return;
+        
+        // Try random 2-opt swaps to simulate heuristic steps
+        const i = Math.floor(Math.random() * (nodes.length - 1));
+        const j = i + 1 + Math.floor(Math.random() * (nodes.length - i - 1));
+        
+        if (i === 0 && j === nodes.length - 1) return; // avoid trivial complete reversal
+        
+        // Reverse subsegment from i+1 to j
+        const newTour = [...bestTour];
+        let left = i + 1;
+        let right = j;
+        while (left < right) {
+          const temp = newTour[left];
+          newTour[left] = newTour[right];
+          newTour[right] = temp;
+          left++;
+          right--;
+        }
+        
+        const newCost = calculateTourCost(newTour);
+        currentTour = newTour; // Visualise the checked swap
+        
+        if (newCost < bestCost) {
+          bestCost = newCost;
+          bestTour = newTour;
+          return true; // found improvement
+        }
+        return false;
+      }
+
+      // Draw routine
+      function draw() {
+        const rect = container.getBoundingClientRect();
+        ctx.clearRect(0, 0, rect.width, rect.height);
+        
+        // Draw grid lines inside simulation panel
+        ctx.strokeStyle = "rgba(48, 54, 61, 0.2)";
+        ctx.lineWidth = 1;
+        const spacing = 30;
+        for (let x = 0; x < rect.width; x += spacing) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, rect.height);
+          ctx.stroke();
+        }
+        for (let y = 0; y < rect.height; y += spacing) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(rect.width, y);
+          ctx.stroke();
+        }
+
+        // Draw connections for visual swap checking (faint red)
+        ctx.strokeStyle = "rgba(234, 67, 53, 0.15)";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        for (let i = 0; i < currentTour.length; i++) {
+          const n1 = nodes[currentTour[i]];
+          const n2 = nodes[currentTour[(i + 1) % currentTour.length]];
+          ctx.lineTo(n2.x, n2.y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+
+        // Draw best tour (solid bright cyan/accent)
+        ctx.strokeStyle = "var(--accent-color)";
+        ctx.lineWidth = 3;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = "rgba(88, 166, 255, 0.5)";
+        ctx.beginPath();
+        for (let i = 0; i < bestTour.length; i++) {
+          const node = nodes[bestTour[i]];
+          if (i === 0) ctx.moveTo(node.x, node.y);
+          else ctx.lineTo(node.x, node.y);
+        }
+        ctx.closePath();
+        ctx.stroke();
+        ctx.shadowBlur = 0; // reset shadow
+
+        // Draw nodes
+        nodes.forEach(node => {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, 6, 0, Math.PI * 2);
+          ctx.fillStyle = "#ffffff";
+          ctx.shadowBlur = 6;
+          ctx.shadowColor = "#ffffff";
+          ctx.fill();
+          
+          ctx.strokeStyle = "var(--border-color)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          ctx.shadowBlur = 0; // reset shadow
+        });
+      }
+
+      function updateStats() {
+        costSpan.textContent = `${Math.round(bestCost)}px`;
+        iterSpan.textContent = iteration;
+      }
+
+      // Loop animation
+      function loop() {
+        if (!isPaused) {
+          iteration++;
+          
+          // Perform optimization steps
+          for (let step = 0; step < 5; step++) {
+            performTwoOptStep();
+          }
+          
+          updateStats();
+          draw();
+          
+          // Auto-reset when solved/converged
+          if (iteration > 250) {
+            iteration = 0;
+            generateNodes(nodes.length);
+          }
+        }
+        
+        animationFrameId = requestAnimationFrame(loop);
+      }
+
+      // Add click behavior on canvas to insert new nodes
+      canvas.addEventListener("mousedown", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        nodes.push({ x, y, id: nodes.length });
+        currentTour.push(nodes.length - 1);
+        bestTour = [...currentTour];
+        bestCost = calculateTourCost(bestTour);
+        iteration = 0;
+        
+        draw();
+        updateStats();
+      });
+
+      // Button Handlers
+      resetBtn.addEventListener("click", () => {
+        generateNodes(12);
+        draw();
+        updateStats();
+      });
+
+      addNodeBtn.addEventListener("click", () => {
+        const rect = container.getBoundingClientRect();
+        const x = 50 + Math.random() * (rect.width - 100);
+        const y = 50 + Math.random() * (rect.height - 100);
+        
+        nodes.push({ x, y, id: nodes.length });
+        currentTour.push(nodes.length - 1);
+        bestTour = [...currentTour];
+        bestCost = calculateTourCost(bestTour);
+        iteration = 0;
+        
+        draw();
+        updateStats();
+      });
+
+      pauseBtn.addEventListener("click", () => {
+        isPaused = !isPaused;
+        if (isPaused) {
+          pauseBtn.innerHTML = '<i class="fa-solid fa-play"></i> Resume';
+          pauseBtn.classList.add("active");
+        } else {
+          pauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause';
+          pauseBtn.classList.remove("active");
+        }
+      });
+
+      // Bootstrap Sim
+      resizeCanvas();
+      generateNodes(12);
+      loop();
+
+      // Handle window resize dynamically
+      window.addEventListener("resize", () => {
+        const oldW = canvas.width / (window.devicePixelRatio || 1);
+        const oldH = canvas.height / (window.devicePixelRatio || 1);
+        resizeCanvas();
+        const newW = canvas.width / (window.devicePixelRatio || 1);
+        const newH = canvas.height / (window.devicePixelRatio || 1);
+        
+        // Rescale node layout coordinates
+        nodes.forEach(node => {
+          node.x = (node.x / oldW) * newW;
+          node.y = (node.y / oldH) * newH;
+        });
+        
+        bestCost = calculateTourCost(bestTour);
+        draw();
+      });
+    }
+  </script>
+</body>
+</html>
