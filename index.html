@@ -1954,6 +1954,15 @@
         html_url: "https://github.com/Utsav-Thakur/TSP"
       },
       {
+        name: "unlocking-behavioral-intelligence-in-airline-loyalty-programs",
+        full_name: "Utsav-Thakur/unlocking-behavioral-intelligence-in-airline-loyalty-programs",
+        description: "XGBoost churn prediction (ROC-AUC 0.941) + KMeans segmentation + Claude AI retention strategies for 16,737 airline loyalty members.",
+        stargazers_count: 0,
+        language: "Python",
+        updated_at: "2026-06-27T10:44:38Z",
+        html_url: "https://github.com/Utsav-Thakur/unlocking-behavioral-intelligence-in-airline-loyalty-programs"
+      },
+      {
         name: "portfolio-web",
         full_name: "Utsav-Thakur/portfolio-web",
         description: "Personal portfolio website with interactive TSP dashboard.",
@@ -2127,24 +2136,35 @@
       const projectsGrid = document.getElementById("projectsGrid");
       if (!projectsGrid) return;
 
-      // Filter and locate relevant repos: TSP and portfolio-web
+      // Filter and locate relevant repos
       const matchedTSP = repos.find(r => r.name.toLowerCase() === "tsp") || FALLBACK_REPOS[0];
-      const matchedPortfolio = repos.find(r => r.name.toLowerCase() === "portfolio-web") || FALLBACK_REPOS[1];
+      const matchedLoyalty = repos.find(r => r.name.toLowerCase() === "unlocking-behavioral-intelligence-in-airline-loyalty-programs") || FALLBACK_REPOS[1];
+      const matchedPortfolio = repos.find(r => r.name.toLowerCase() === "portfolio-web") || FALLBACK_REPOS[2];
 
       const reposToRender = [
         {
           data: matchedTSP,
-          title: "TSP — QIGWO Optimizer", // Enhanced title as requested in design requirements
+          title: "TSP — QIGWO Optimizer",
           tags: ["Python", "Jupyter", "Optimization", "Metaheuristics"],
           btnText: "Live Demo",
-          btnUrl: "https://github.com/Utsav-Thakur/TSP"
+          btnUrl: "https://utsav-thakur-portfolio.vercel.app/tsp/index.html",
+          codeUrl: "https://github.com/Utsav-Thakur/TSP"
+        },
+        {
+          data: matchedLoyalty,
+          title: "LoyaltyIQ — Airline Churn Prediction & AI Retention",
+          tags: ["Python", "XGBoost", "KMeans", "Claude AI", "FastAPI"],
+          btnText: "Live Demo",
+          btnUrl: "https://loyaltyiq-nine.vercel.app/",
+          codeUrl: "https://github.com/Utsav-Thakur/unlocking-behavioral-intelligence-in-airline-loyalty-programs"
         },
         {
           data: matchedPortfolio,
           title: "portfolio-web",
-          tags: ["HTML", "CSS", "JS", "Data Visualizations"],
-          btnText: "Live Dashboard",
-          btnUrl: "#about"
+          tags: ["Next.js", "Tailwind", "TypeScript", "Framer Motion"],
+          btnText: "Live Portfolio",
+          btnUrl: "https://utsav-thakur-portfolio.vercel.app/",
+          codeUrl: "https://github.com/Utsav-Thakur/portfolio-web"
         }
       ];
 
@@ -2164,7 +2184,7 @@
         });
 
         // Use custom description if repo description is empty
-        const desc = repo.description || (repo.name.toLowerCase() === "tsp" ? FALLBACK_REPOS[0].description : FALLBACK_REPOS[1].description);
+        const desc = repo.description || item.title;
 
         html += `
         <div class="project-card glass-card">
@@ -2188,10 +2208,15 @@
             <div class="project-tags">
               ${tagsHtml}
             </div>
-            <div class="project-action-row">
-              <a href="${item.btnUrl}" class="project-btn">
+            <div class="project-action-row" style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              ${item.btnUrl && item.btnUrl !== '#' ? `
+              <a href="${item.btnUrl}" target="_blank" class="project-btn">
                 <i class="fa-solid fa-arrow-up-right-from-square"></i> ${item.btnText}
-              </a>
+              </a>` : ''}
+              ${item.codeUrl && item.codeUrl !== '#' ? `
+              <a href="${item.codeUrl}" target="_blank" class="project-btn" style="background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary);">
+                <i class="fa-brands fa-github"></i> View Code
+              </a>` : ''}
             </div>
           </div>
         </div>
