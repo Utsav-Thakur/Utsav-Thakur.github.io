@@ -348,10 +348,12 @@
       font-size: 1.3rem;
       font-weight: 500;
       color: var(--accent-color);
-      height: 1.8rem;
+      min-height: 2.2rem;
+      height: 2.2rem;
       display: flex;
       align-items: center;
       font-family: var(--font-mono);
+      overflow: visible;
     }
 
     .typing-cursor {
@@ -2290,8 +2292,8 @@
     let isDeleting = false;
     const typingSpan = document.getElementById("typingEffect");
     const typingDelay = 100;
-    const erasingDelay = 50;
-    const newWordDelay = 2000; // delay between words
+    const erasingDelay = 45;
+    const newWordDelay = 2500; // delay between words (hold completed word longer)
 
     function type() {
       const currentRole = roles[roleIndex];
@@ -2309,14 +2311,14 @@
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         roleIndex = (roleIndex + 1) % roles.length;
-        setTimeout(type, 300);
+        setTimeout(type, 500); // pause before typing next word
       } else {
         setTimeout(type, isDeleting ? erasingDelay : typingDelay);
       }
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      setTimeout(type, 500);
+      setTimeout(type, 800); // delay start so layout fully settles
       generateHeatmap();
       initTspSimulator();
       fetchGitHubData();
